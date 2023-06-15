@@ -1,0 +1,16 @@
+{
+    "test": {
+        "version": "1.1",
+        "about": "Тестовый проект",
+        "notes": "- some text\n- line2",
+        "url": "https://hub.gyver.ru/ota/test.bin.gz",
+        "git": "https://github.com/alexgyver"
+    },
+    "TachoLED": {
+        "version": "1.0",
+        "about": "Тестовый проект",
+        "notes": "- some text\n- line2",
+        "url": "https://hub.gyver.ru/ota/test.bin.gz",
+        "git": "https://github.com/alexgyver/TachoLED"
+    }
+}
