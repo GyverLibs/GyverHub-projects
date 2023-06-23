@@ -1,3 +1,4 @@
 https://github.com/AlexGyver/TachoLED
 https://github.com/AlexGyver/GyverLamp
+https://github.com/Crazy-Max-Blog/CrazyLamp
 https://github.com/Serega88kos/Clock_ESP8266_WS2812_IOT
