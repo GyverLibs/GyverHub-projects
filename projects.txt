@@ -2,3 +2,4 @@ https://github.com/AlexGyver/TachoLED
 https://github.com/AlexGyver/GyverLamp
 https://github.com/Serega88kos/BigClock
 https://github.com/Serega88kos/MatrixClock
+https://github.com/Fedakor/Magicgyver
