@@ -1,32 +1,83 @@
-This is an automatic translation, may be incorrect in some places. See sources and examples!
+This is an automatic translation and may be incorrect in some places. See the source README and examples for authoritative information.
 
-## How to add your project
-- Register for GitHub, create a project repository (see Google)
-- draw up a project - description, scheme, instructions, etc.
-- Create and fill out the file of information about the project, it should be along the path `/project.json`
+# GyverHub-projects
+This is an open database of projects[platform](https://github.com/GyverLibs/GyverHub). To add your project, you need to:
 
-Sample information file:
-`` `json
+## Design a repository
+- Register on GitHub, create a project repository (see Google)
+- Design the project - source, description, scheme, instructions, etc.
+- Download the compiled firmware
+- Create and complete a project information file`project.json`(see below)
+- Look.[repository](https://github.com/GyverLibs/GyverHub-example)
+
+## Add to the database
+Make a fork of this repository, add a link to your project repository to your projects.txt file, and create a Pull request:
+- Switch to[editing page](https://github.com/GyverLibs/GyverHub-projects/edit/main/projects.txt)file`projects.txt`
+    - If this is the first addition, click **Fork this repository**
+- Add a link to your project repository to the list of projects
+- Press **Commit changes...** in the upper right corner of the screen
+- Click **Propose changes** in the window that appears
+- Press **Create pull request** in the upper right corner of the screen
+- Click **Create pull request** on the open page
+- Wait for manual moderation
+
+## project.json
+The file contains information about the project and the path to the compiled firmware files for different platforms:
+```json
 {
-  "Version": "X.X",
-  "Notes": "Comments on the version of the update",
-  "ABOUT": "Short description of the project"
+  "name": "Название проекта",
+  "about": "Краткое описание проекта",
+  "version": "1.0",
+  "notes": "Комментарии к обновлению",
+  "builds": [
+    {
+      "chipFamily": "ESP8266",
+      "parts": [
+        {
+          "path": "https://raw.githubusercontent.com/GyverLibs/GyverHub-example/main/bin/firmware.bin",
+          "offset": 0
+        }
+      ]
+    }
+  ]
 }
-`` `
-> The name of the project will be taken from the name of the repository
+```
 
-### Add to the base
-You just need to make the FORK of this (Gyverhub-Projects) repository, add a link to the repository of your project to the Projects.txt file and create PULL REQUEST:
-- Go to the [editing page] (https://github.com/gyverlibs/gyverhub-projects/edit/main/projects.txt) Projects.txt file
-    - If this is the first addition - click ** Fork this repository **
-- Add a link to the repository of your project to the project list
-- click ** comit changes ... ** in the upper right corner of the screen
-- click ** propose changes ** in the window that appears
-- click ** Create Pull Request ** in the upper right corner of the screen
-- click ** Create Pull Request ** on the page opened
-- wait for manual moderation
+### Array builds
+If the project can be run on different ESP-scans, you can attach a separate binary for each and specify the paths to them. A complete example of the ESP family can be seen.[here](https://raw.githubusercontent.com/GyverLibs/GyverHub-example/main/project.json). 
 
-> Note: this is a public base of projects, so only well -designed projects will be added
+### Parameter chipFamily
+Supported platforms and parameter values`chipFamily`:
+- `ESP8266`
+- `ESP32`
+- `ESP32-C3`
+- `ESP32-S2`
+- `ESP32-S3`
 
-## Automatic update
-How to configure an update with GitHub from the application [read wiki] (https://github.com/gyverlibs/gyverhub/wiki/5.-%D0%94%D0%BE%D0%BF%D0%BE%D0%BB%BB%BB%D0%BD%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE)
+### Pathway
+The path should lead to the compiled firmware file. It can be placed both in the repository itself and in releases:
+
+#### In the repository.
+```
+https://raw.githubusercontent.com/<account>/<project>/main/<path from the root of the repository >>
+```
+Examples:
+- bin
+  - firmware.bin
+  - esp8266
+    - firmware.bin
+  - esp32
+    - firmware.bin
+```
+https://raw.githubusercontent.com/GyverLibs/GyverHub-example/main/bin/firmware.bin
+https://raw.githubusercontent.com/GyverLibs/GyverHub-example/main/bin/esp8266/firmware.bin
+https://raw.githubusercontent.com/GyverLibs/GyverHub-example/main/bin/esp32/firmware.bin
+```
+
+#### On releases
+```
+https://github.com/<account>/<project>/releases/latest/download/<file >>
+```Example:
+```
+https://github.com/GyverLibs/GyverHub-example/releases/latest/download/firmware.bin
+```
