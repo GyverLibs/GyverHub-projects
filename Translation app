@@ -1,0 +1,47 @@
+# Install required libraries:
+# pip install opencv-python pytesseract googletrans==4.0.0-rc1
+
+import cv2
+import pytesseract
+from googletrans import Translator
+
+# Tesseract OCR path (अगर Windows में हैं तो पथ सेट करें)
+# pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+
+translator = Translator()
+
+# कैमरा स्ट्रीम शुरू करें
+cap = cv2.VideoCapture(0)
+
+dest_lang = 'hi'  # ट्रांसलेट करने की भाषा, यहाँ हिंदी
+
+while True:
+    ret, frame = cap.read()
+    if not ret:
+        break
+
+    # टेक्स्ट निकालना
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    text = pytesseract.image_to_string(gray)
+
+    # ट्रांसलेशन
+    if text.strip() != "":
+        try:
+            translated = translator.translate(text, dest=dest_lang)
+            display_text = translated.text
+        except Exception as e:
+            display_text = f"Error: {e}"
+    else:
+        display_text = "No text detected"
+
+    # स्क्रीन पर टेक्स्ट दिखाएँ
+    cv2.putText(frame, display_text, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+
+    cv2.imshow('Camera Translation', frame)
+
+    # ESC दबाकर बाहर निकलें
+    if cv2.waitKey(1) & 0xFF == 27:
+        break
+
+cap.release()
+cv2.destroyAllWindows()
